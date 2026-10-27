@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinguaSwap — Language Translator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo" id="logoHome" role="button" tabindex="0" title="Back to home">
+        <div class="logo-icon">🌐</div>
+        <div>
+          <div class="logo-text">LinguaSwap</div>
+          <div class="tagline">Instant AI-powered translation</div>
+        </div>
+      </div>
+      <div class="header-badge">
+        <div class="status-dot"></div>
+        API Ready
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════ HOME VIEW ════════ -->
+  <section class="home" id="homeView">
+    <div class="home-glow"></div>
+    <div class="home-inner">
+
+      <div class="home-eyebrow">60+ languages · no sign-up</div>
+
+      <h1 class="home-headline">
+        Say it once.<br>
+        <span class="home-headline-accent">Heard everywhere.</span>
+      </h1>
+
+      <p class="home-sub">
+        Type a sentence, pick a language, and LinguaSwap translates and speaks it back —
+        right in your browser.
+      </p>
+
+      <button class="home-cta" id="startBtn">
+        Start Translating <span class="home-cta-arrow">→</span>
+      </button>
+
+      <div class="home-strip">
+        <div class="home-strip-item">
+          <div class="home-strip-icon">⚡</div>
+          <div>
+            <div class="home-strip-title">Instant</div>
+            <div class="home-strip-text">Results as you type</div>
+          </div>
+        </div>
+        <div class="home-strip-item">
+          <div class="home-strip-icon">🔊</div>
+          <div>
+            <div class="home-strip-title">Listen back</div>
+            <div class="home-strip-text">Hear native pronunciation</div>
+          </div>
+        </div>
+        <div class="home-strip-item">
+          <div class="home-strip-icon">📜</div>
+          <div>
+            <div class="home-strip-title">History</div>
+            <div class="home-strip-text">Revisit past translations</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════ TRANSLATOR VIEW ════════ -->
+  <main class="main hidden" id="appView">
+    <div class="card">
+
+      <!-- Language Selectors -->
+      <div class="lang-row">
+        <div class="lang-group">
+          <label for="sourceLang">Translate From</label>
+          <div class="select-wrap">
+            <select id="sourceLang"></select>
+          </div>
+        </div>
+        <button class="swap-btn" id="swapBtn" title="Swap languages">⇄</button>
+        <div class="lang-group">
+          <label for="targetLang">Translate To</label>
+          <div class="select-wrap">
+            <select id="targetLang"></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text Areas -->
+      <div class="text-row">
+        <!-- Source -->
+        <div class="text-box">
+          <div class="box-header">
+            <span class="box-label">Source Text</span>
+            <div class="box-actions">
+              <button class="icon-btn" id="speakSourceBtn" title="Listen">🔊</button>
+              <button class="icon-btn" id="clearBtn" title="Clear text">✕</button>
+            </div>
+          </div>
+          <textarea id="sourceText" placeholder="Enter text to translate…" maxlength="5000"></textarea>
+          <div class="char-count"><span id="charCount">0</span> / 5000</div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="arrow-divider">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </div>
+
+        <!-- Target -->
+        <div class="text-box target-box">
+          <div class="box-header">
+            <span class="box-label">Translation</span>
+            <div class="box-actions">
+              <button class="icon-btn" id="speakTargetBtn" title="Listen to translation">🔊</button>
+              <button class="icon-btn" id="copyBtn" title="Copy translation">📋</button>
+            </div>
+          </div>
+          <div id="translatedText" class="translated-output">
+            <span class="placeholder-text">Translation will appear here…</span>
+          </div>
+          <div id="loadingSpinner" class="spinner hidden">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Translate Button -->
+      <div class="btn-row">
+        <button class="translate-btn" id="translateBtn">🌐 &nbsp;Translate</button>
+      </div>
+
+      <p class="hint">Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to translate instantly</p>
+
+    </div>
+
+    <!-- History -->
+    <div class="history-section" id="historySection" style="display:none;">
+      <div class="history-header">
+        <h2 class="history-title">📜 Recent Translations</h2>
+        <button class="clear-history-btn" id="clearHistoryBtn">Clear all</button>
+      </div>
+      <div id="historyList" class="history-list"></div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast hidden">Copied!</div>
+
+  <footer>
+    <p>Powered by <a href="https://translate.googleapis.com" target="_blank">Google Translate</a> &nbsp;·&nbsp; LinguaSwap © 2025</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
